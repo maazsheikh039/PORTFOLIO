@@ -1,4 +1,5 @@
 import os
+import re
 import sqlite3
 import smtplib
 from datetime import datetime, timezone
@@ -11,15 +12,23 @@ from flask import Flask, jsonify, render_template, request
 load_dotenv()
 
 app = Flask(__name__)
+app.config["MAX_CONTENT_LENGTH"] = 16 * 1024
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASE = os.path.join(BASE_DIR, "messages.db")
 
 SMTP_EMAIL = os.getenv("SMTP_EMAIL")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
+if SMTP_PASSWORD:
+    SMTP_PASSWORD = "".join(SMTP_PASSWORD.split())
 RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL", SMTP_EMAIL)
 SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+REQUIRE_EMAIL_DELIVERY = os.getenv("REQUIRE_EMAIL_DELIVERY", "true").lower() != "false"
+EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+MAX_NAME_LENGTH = 80
+MAX_EMAIL_LENGTH = 254
+MAX_MESSAGE_LENGTH = 2000
 
 
 def init_db():
@@ -82,6 +91,15 @@ def send_email(name, sender_email, message):
 init_db()
 
 
+@app.after_request
+def set_security_headers(response):
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    return response
+
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -89,15 +107,22 @@ def index():
 
 @app.route("/api/contact", methods=["POST"])
 def contact():
-    data = request.get_json() or {}
-    name = data.get("name", "").strip()
-    email = data.get("email", "").strip()
-    message = data.get("message", "").strip()
+    data = request.get_json(silent=True) or {}
+    name = str(data.get("name", "")).strip()
+    email = str(data.get("email", "")).strip()
+    message = str(data.get("message", "")).strip()
 
     if not name or not email or not message:
         return jsonify({"success": False, "error": "All fields are required."}), 400
 
-    if "@" not in email or "." not in email.split("@")[-1]:
+    if (
+        len(name) > MAX_NAME_LENGTH
+        or len(email) > MAX_EMAIL_LENGTH
+        or len(message) > MAX_MESSAGE_LENGTH
+    ):
+        return jsonify({"success": False, "error": "Please keep your message shorter."}), 400
+
+    if not EMAIL_RE.match(email):
         return jsonify({"success": False, "error": "Please enter a valid email."}), 400
 
     email_sent, email_error = send_email(name, email, message)
@@ -113,13 +138,20 @@ def contact():
             "message": "Thank you! Your message has been sent.",
         })
 
-    if not SMTP_EMAIL or not SMTP_PASSWORD:
-        return jsonify({
-            "success": True,
-            "message": "Thank you! Your message has been saved.",
-        })
-
     app.logger.warning("Contact form email failed: %s", email_error)
+
+    if REQUIRE_EMAIL_DELIVERY:
+        if not SMTP_EMAIL or not SMTP_PASSWORD:
+            return jsonify({
+                "success": False,
+                "error": "Message saved, but email delivery is not configured yet.",
+            }), 503
+
+        return jsonify({
+            "success": False,
+            "error": "Message saved, but email delivery failed. Please email me directly.",
+        }), 502
+
     return jsonify({
         "success": True,
         "message": "Thank you! Your message has been saved.",

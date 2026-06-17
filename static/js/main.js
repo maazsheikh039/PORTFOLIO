@@ -119,17 +119,4 @@
     });
   }
 
-  // Photo placeholder — replace with your image:
-  // 1. Add photo to static/images/profile.jpg
-  // 2. Uncomment the block below
-  /*
-  const photoPlaceholder = document.getElementById('photo-placeholder');
-  const img = document.createElement('img');
-  img.src = '/static/images/profile.jpg';
-  img.alt = 'Maaz Ghufran';
-  img.onload = () => {
-    photoPlaceholder.classList.add('has-photo');
-    photoPlaceholder.appendChild(img);
-  };
-  */
 })();
