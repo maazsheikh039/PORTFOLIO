@@ -105,6 +105,11 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/about")
+def about_page():
+    return render_template("about.html")
+
+
 @app.route("/api/contact", methods=["POST"])
 def contact():
     data = request.get_json(silent=True) or {}

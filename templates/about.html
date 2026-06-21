@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Maaz Ghufran - Fresher DevOps Engineer and future AI/ML Engineer">
+  <title>About Maaz Ghufran | DevOps & AI/ML Journey</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="{{ url_for('index') }}#home" class="nav-logo" aria-label="Maaz Ghufran home"><span>M</span><i></i><span>G</span></a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="{{ url_for('index') }}#home" class="nav-link">Home</a></li>
+        <li><a href="{{ url_for('about_page') }}" class="nav-link active">About</a></li>
+        <li><a href="{{ url_for('index') }}#skills" class="nav-link">Skills</a></li>
+        <li><a href="{{ url_for('index') }}#projects" class="nav-link">Projects</a></li>
+        <li><a href="{{ url_for('index') }}#contact" class="nav-link nav-link--cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="story-page">
+    <section class="story-hero">
+      <div class="container story-hero-grid">
+        <div>
+          <p class="section-eyebrow">About Maaz</p>
+          <h1>Fresher DevOps Engineer building toward future AI/ML engineering.</h1>
+          <p>
+            My current path is practical DevOps first: Linux, automation, containers, CI/CD, and reliable deployment.
+            My future plan is to grow into AI/ML engineering with a production mindset, where models are deployed,
+            monitored, and useful in real operational systems.
+          </p>
+          <div class="hero-actions">
+            <a href="{{ url_for('static', filename='files/Maaz-Ghufran-CV.pdf') }}" class="btn btn-primary" download>Download CV</a>
+            <a href="{{ url_for('index') }}#contact" class="btn btn-outline">Contact</a>
+          </div>
+        </div>
+        <div class="story-card">
+          <img src="{{ url_for('static', filename='images/maaz-image.jpg') }}" alt="Maaz Ghufran">
+          <div>
+            <strong>Current focus</strong>
+            <span>Fresher DevOps Engineer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container story-layout">
+        <aside class="story-sidebar">
+          <a href="#history">History</a>
+          <a href="#education">Education</a>
+          <a href="#current">Current Focus</a>
+          <a href="#future">Future Plans</a>
+          <a href="#updates">Updates</a>
+        </aside>
+
+        <div class="story-content">
+          <section id="history" class="story-section">
+            <p class="section-eyebrow">History</p>
+            <h2>How I got here</h2>
+            <p>
+              I started with curiosity about technology, systems, and how real services run behind the screen.
+              That interest moved me toward Linux, automation, cloud concepts, and DevOps. Over time, I became more
+              interested in how machine learning can help operations teams detect patterns, reduce manual work, and
+              improve decisions.
+            </p>
+          </section>
+
+          <section id="education" class="story-section">
+            <p class="section-eyebrow">Education</p>
+            <h2>Education and training</h2>
+            <div class="story-timeline">
+              <div><strong>2025 - Present</strong><span>EduQual Level 6 Diploma in AIOps at Al Nafi International College.</span></div>
+              <div><strong>2023 - 2025</strong><span>Intermediate at Nusrat Bhutto Government College, Karachi.</span></div>
+              <div><strong>2010 - 2023</strong><span>Matric at S.M Public School, North Nazimabad, Karachi.</span></div>
+            </div>
+          </section>
+
+          <section id="current" class="story-section">
+            <p class="section-eyebrow">Current Focus</p>
+            <h2>What I am building now</h2>
+            <p>
+              I am positioning myself as a fresher DevOps Engineer with a strong learning track in AIOps. My current
+              focus is Linux administration, Bash and Python scripting, Docker, Kubernetes concepts, CI/CD workflows,
+              and security-aware deployment practices.
+            </p>
+          </section>
+
+          <section id="future" class="story-section">
+            <p class="section-eyebrow">Future Plans</p>
+            <h2>Where I am going next</h2>
+            <p>
+              My long-term goal is to become an AI/ML Engineer who understands production systems. I want to connect
+              DevOps and machine learning: monitoring pipelines, anomaly detection, automation, and MLOps practices
+              that make ML useful outside notebooks.
+            </p>
+          </section>
+
+          <section id="updates" class="story-section">
+            <p class="section-eyebrow">Updates</p>
+            <h2>What will be added here</h2>
+            <p>
+              This page is ready for regular updates: new projects, certifications, deployment notes, learning logs,
+              and real case studies as the portfolio grows.
+            </p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

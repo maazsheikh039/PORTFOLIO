@@ -9,7 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
@@ -18,7 +18,7 @@
   <!-- Navigation -->
   <header class="header" id="header">
     <nav class="nav container">
-      <a href="#home" class="nav-logo">MG</a>
+      <a href="#home" class="nav-logo" aria-label="Maaz Ghufran home"><span>M</span><i></i><span>G</span></a>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
         <span></span>
         <span></span>
@@ -42,18 +42,22 @@
       <div class="hero-bg"></div>
       <div class="container hero-content">
         <div class="hero-text">
-          <p class="hero-greeting">Hello, I'm</p>
+          <p class="hero-kicker"><span class="kicker-dot"></span> ~/portfolio/status: available</p>
           <h1 class="hero-name">Maaz Ghufran</h1>
-          <p class="hero-title">Aspiring AI/ML Engineer <span class="hero-divider">|</span> AIOps</p>
+          <p class="hero-title">Fresher DevOps Engineer building reliable systems, automation, and a path into AI/ML.</p>
           <p class="hero-bio">
-            Motivated AIOps &amp; DevOps trainee pursuing an EduQual Level 6 Diploma.
-            Passionate about automating infrastructure and applying Machine Learning
-            to solve real-world operational challenges. Building toward production ML systems
-            — from anomaly detection to MLOps.
+            I focus on Linux, scripting, containers, CI/CD, and monitoring fundamentals - then connect that foundation
+            to future AIOps and machine learning workflows.
           </p>
           <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary">Get in Touch</a>
-            <a href="#projects" class="btn btn-outline">View Projects</a>
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="{{ url_for('static', filename='files/Maaz-Ghufran-CV.pdf') }}" class="btn btn-outline" download>Download CV</a>
+            <a href="#contact" class="btn btn-ghost">Contact</a>
+          </div>
+          <div class="hero-terminal" aria-label="Current focus">
+            <div><span>$ role</span><strong>Fresher DevOps Engineer</strong></div>
+            <div><span>$ focus</span><strong>Linux / Docker / CI-CD</strong></div>
+            <div><span>$ next</span><strong>AIOps + AI/ML Engineering</strong></div>
           </div>
           <div class="hero-social">
             <a href="https://github.com/maazsheikh039" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -91,9 +95,15 @@
           </div>
         </div>
         <div class="hero-image">
-          <div class="photo-frame">
-            <img class="profile-pic" src="{{ url_for('static', filename='images/maaz-image.jpg') }}" alt="Maaz Ghufran">
-          </div>
+          <figure class="hero-portrait">
+            <div class="portrait-frame">
+              <img class="profile-pic" src="{{ url_for('static', filename='images/maaz-image.jpg') }}" alt="Maaz Ghufran">
+            </div>
+            <figcaption>
+              <span class="status-dot"></span>
+              Open to internships and junior DevOps roles
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -101,33 +111,39 @@
     <!-- About -->
     <section class="section" id="about">
       <div class="container">
-        <h2 class="section-title">About Me</h2>
+        <div class="section-heading">
+          <p class="section-eyebrow">About</p>
+          <h2 class="section-title">A practical builder with an operations mindset.</h2>
+          <p class="section-subtitle">I care about clean systems, repeatable deployment, useful monitoring, and learning by building.</p>
+        </div>
         <div class="about-grid">
           <div class="about-content">
             <p>
-              I'm an AIOps &amp; DevOps trainee at Al-Razzaq Labs (Al Nafi), working remotely
-              on Linux administration, containerization, CI/CD pipelines, and applying
-              Machine Learning to optimize system monitoring and operations.
+              I'm an AIOps &amp; DevOps trainee at Al-Razzaq Labs (Al Nafi), working remotely on Linux administration,
+              containerization, CI/CD pipelines, and applied machine learning for operations.
             </p>
             <p>
-              My goal is to become an AI/ML Engineer who bridges DevOps and data science —
-              building models that don't just work in notebooks, but in production environments
-              with proper monitoring, automation, and scalability.
+              My direction is AI/ML engineering with production discipline: models, scripts, and automations that can be
+              deployed, monitored, and improved instead of staying in notebooks.
             </p>
+            <div class="about-actions">
+              <a href="{{ url_for('static', filename='files/Maaz-Ghufran-CV.pdf') }}" class="btn btn-primary" download>Download CV</a>
+              <a href="#projects" class="btn btn-outline">View Projects</a>
+            </div>
+            <a href="{{ url_for('about_page') }}" class="story-link">Read full story</a>
             <ul class="about-info">
               <li><strong>Location:</strong> Karachi, Pakistan</li>
               <li><strong>Email:</strong> <a href="mailto:maazsheikh039@gmail.com">maazsheikh039@gmail.com</a></li>
               <li><strong>Languages:</strong> Urdu (Native), English (Intermediate)</li>
             </ul>
           </div>
-          <div class="about-interests">
-            <h3>Interests</h3>
-            <div class="interest-tags">
-              <span class="tag">Tech Research</span>
-              <span class="tag">Cricket</span>
-              <span class="tag">Badminton</span>
-              <span class="tag">Gaming</span>
-              <span class="tag">Traveling</span>
+          <div class="proof-panel">
+            <h3>Focus Areas</h3>
+            <div class="proof-list">
+              <div><strong>01</strong><span>Linux administration and automation scripting</span></div>
+              <div><strong>02</strong><span>Containerized deployment workflows</span></div>
+              <div><strong>03</strong><span>ML concepts applied to monitoring and anomaly thinking</span></div>
+              <div><strong>04</strong><span>Documentation, security basics, and reliable handoff</span></div>
             </div>
           </div>
         </div>
@@ -137,7 +153,11 @@
     <!-- Skills -->
     <section class="section section-alt" id="skills">
       <div class="container">
-        <h2 class="section-title">Skills</h2>
+        <div class="section-heading">
+          <p class="section-eyebrow">Stack</p>
+          <h2 class="section-title">Skills mapped to real workflows.</h2>
+          <p class="section-subtitle">Grouped by how I use them: build, automate, deploy, and monitor.</p>
+        </div>
         <div class="skills-grid">
           <div class="skill-category">
             <h3>AI / ML</h3>
@@ -184,13 +204,44 @@
             </div>
           </div>
         </div>
+        <div class="skills-marquee" aria-label="Technology skills">
+          <div class="skills-marquee-track">
+            <span class="skill-icon">Python</span>
+            <span class="skill-icon">Linux</span>
+            <span class="skill-icon">Docker</span>
+            <span class="skill-icon">K8s</span>
+            <span class="skill-icon">Ansible</span>
+            <span class="skill-icon">CI/CD</span>
+            <span class="skill-icon">ML</span>
+            <span class="skill-icon">NLP</span>
+            <span class="skill-icon">OpenShift</span>
+            <span class="skill-icon">Git</span>
+            <span class="skill-icon">Bash</span>
+            <span class="skill-icon">SQL</span>
+            <span class="skill-icon">Python</span>
+            <span class="skill-icon">Linux</span>
+            <span class="skill-icon">Docker</span>
+            <span class="skill-icon">K8s</span>
+            <span class="skill-icon">Ansible</span>
+            <span class="skill-icon">CI/CD</span>
+            <span class="skill-icon">ML</span>
+            <span class="skill-icon">NLP</span>
+            <span class="skill-icon">OpenShift</span>
+            <span class="skill-icon">Git</span>
+            <span class="skill-icon">Bash</span>
+            <span class="skill-icon">SQL</span>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Experience -->
     <section class="section" id="experience">
       <div class="container">
-        <h2 class="section-title">Experience</h2>
+        <div class="section-heading">
+          <p class="section-eyebrow">Experience</p>
+          <h2 class="section-title">Training with production-oriented tools.</h2>
+        </div>
         <div class="timeline">
           <article class="timeline-item">
             <div class="timeline-marker"></div>
@@ -223,46 +274,55 @@
     <!-- Projects -->
     <section class="section section-alt" id="projects">
       <div class="container">
-        <h2 class="section-title">Projects</h2>
-        <p class="section-subtitle">Projects coming soon — this section is ready for your work.</p>
+        <div class="section-heading">
+          <p class="section-eyebrow">Selected Work</p>
+          <h2 class="section-title">Project stories recruiters can scan fast.</h2>
+          <p class="section-subtitle">These cards are structured like real case studies: problem, approach, and what the work demonstrates.</p>
+        </div>
         <div class="projects-grid">
-          <article class="project-card project-card--placeholder">
-            <div class="project-status">Coming Soon</div>
-            <h3>Project 1</h3>
-            <p>Add your first project here — description, tech stack, and links.</p>
+          <article class="project-card project-card--featured">
+            <div class="project-status">In Progress</div>
+            <h3>AIOps Monitoring Lab</h3>
+            <p>Designing a lab workflow for collecting system signals, spotting unusual behavior, and preparing the ground for anomaly detection experiments.</p>
+            <ul class="project-points">
+              <li>Problem: noisy operational signals are hard to triage manually.</li>
+              <li>Approach: logs, metrics, Python analysis, and alerting logic.</li>
+              <li>Proof: documents the pipeline so it can become a reproducible repo.</li>
+            </ul>
             <div class="project-tech">
               <span>Python</span>
-              <span>ML</span>
-            </div>
-            <div class="project-links">
-              <span class="project-link-disabled">GitHub</span>
-              <span class="project-link-disabled">Live Demo</span>
+              <span>Linux</span>
+              <span>Monitoring</span>
             </div>
           </article>
-          <article class="project-card project-card--placeholder">
-            <div class="project-status">Coming Soon</div>
-            <h3>Project 2</h3>
-            <p>Add your second project here — description, tech stack, and links.</p>
+          <article class="project-card">
+            <div class="project-status project-status--ready">Ready to Build</div>
+            <h3>Containerized Flask Portfolio</h3>
+            <p>Turning this portfolio into a deployable service with Gunicorn, Nginx, environment-based secrets, and a CI/CD release flow.</p>
+            <ul class="project-points">
+              <li>Problem: local apps need reliable production deployment.</li>
+              <li>Approach: Docker, Nginx reverse proxy, health checks, and rollback plan.</li>
+              <li>Proof: shows DevOps thinking beyond frontend presentation.</li>
+            </ul>
             <div class="project-tech">
-              <span>Docker</span>
-              <span>K8s</span>
-            </div>
-            <div class="project-links">
-              <span class="project-link-disabled">GitHub</span>
-              <span class="project-link-disabled">Live Demo</span>
+              <span>Flask</span>
+              <span>Nginx</span>
+              <span>CI/CD</span>
             </div>
           </article>
-          <article class="project-card project-card--placeholder">
-            <div class="project-status">Coming Soon</div>
-            <h3>Project 3</h3>
-            <p>Add your third project here — description, tech stack, and links.</p>
+          <article class="project-card">
+            <div class="project-status project-status--ready">Next Case Study</div>
+            <h3>Automation Toolkit</h3>
+            <p>A small collection of Bash and Python utilities for repeatable system tasks, checks, and reporting.</p>
+            <ul class="project-points">
+              <li>Problem: manual server checks waste time and invite mistakes.</li>
+              <li>Approach: scripts with clear inputs, outputs, and logs.</li>
+              <li>Proof: demonstrates practical scripting and maintainable docs.</li>
+            </ul>
             <div class="project-tech">
-              <span>AIOps</span>
+              <span>Bash</span>
               <span>Python</span>
-            </div>
-            <div class="project-links">
-              <span class="project-link-disabled">GitHub</span>
-              <span class="project-link-disabled">Live Demo</span>
+              <span>Docs</span>
             </div>
           </article>
         </div>
